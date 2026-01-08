@@ -10,4 +10,4 @@ def productView(request):
         'products' : Product.objects.all()
     }
 
-    return render(request, template_name =  template , context= context)
+    return render(request, template_name =  template , context = context)
