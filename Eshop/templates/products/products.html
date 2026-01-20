@@ -5,9 +5,10 @@ Products
 {% endblock %}
 
 {% block content %}
-<div>
-    <div>
-        {% include 'products/includes/productsSection.html' %}
+<section class="">
+    <div class="row row-col-sm-6 row-col-md-4 row-col-lg-3">
+        {% include 'products/includes/productCard.html' %}
     </div>
-</div>
+</section>
+
 {% endblock %}

@@ -1,15 +1,18 @@
+{% extends 'base/base.html' %}
+
 {% block title %}
 Search Results for {{query}}
 {% endblock %}
 
 {% block content %}
-
 <h2>
     Search Results for : <span class="text-info">{{query}}</span>
 </h2>
+
+<section>
     <div>
         {% include 'products/includes/productsSection.html' %}
     </div>
-
+</section>
 
 {% endblock %}

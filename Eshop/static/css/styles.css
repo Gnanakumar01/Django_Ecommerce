@@ -3,6 +3,10 @@
     padding: 0%;
     box-sizing: border-box;
 }
-#products-container{
-    width: 100px;
+/* Home page */
+#carousel-image {
+   height: 350px;
+   object-fit: cover;
+   border-radius: 10px;
 }
+/* Products page */
