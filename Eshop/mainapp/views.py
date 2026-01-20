@@ -1,6 +1,7 @@
 from django.shortcuts import render
 
 from .models import CarouselImage
+from products.models import Product
 # Create your views here.
 
 def homeView(request):
@@ -9,7 +10,11 @@ def homeView(request):
         'current_page' : 'home',
 
         # Let's collect all existing records of carousel image table to be sent to template 
-        'carousel_images' : CarouselImage.objects.all() # Select * from carousel_images;
+        'carousel_images' : CarouselImage.objects # Select * from carousel_images;
+            .filter(active=True)
+            .order_by('id'),
+
+        'products' : Product.objects.all()
     }
 
     return render(request, template_name = template, context = context)

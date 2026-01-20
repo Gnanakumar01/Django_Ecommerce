@@ -2,10 +2,9 @@
     margin: 0%;
     padding: 0%;
     box-sizing: border-box;
+    display: none;
 }
 
-/* .card_container{
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 10px;
-} */
+.carousel-item{
+    aspect-ratio: 16/4;
+}
