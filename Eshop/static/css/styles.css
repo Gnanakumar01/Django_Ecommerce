@@ -2,9 +2,7 @@
     margin: 0%;
     padding: 0%;
     box-sizing: border-box;
-    display: none;
 }
-
-.carousel-item{
-    aspect-ratio: 16/4;
+#products-container{
+    width: 100px;
 }
