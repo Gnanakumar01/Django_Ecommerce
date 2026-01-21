@@ -1,17 +1,22 @@
-    {% for product in products %}
-    <div  class="col-12 col-sm-6 col-md-4 col-lg-3 g-0">
-    <div class="card " style="width: 18rem;">
-        <img src="{{product.thumbnail.url}}" class="card-img-top" alt="...">
-        <div class="card-body ">
-            <h5 class="card-title text-center">{{product.title}}</h5>
-            <p class="card-text text-center">${{product.price}}</p>
-            <div class="d-flex justify-content-center">
-                <!-- <a href="#" class="btn btn-primary">Buy</a> -->
-                <a href="#" class="btn btn-primary">Add to Cart</a>
+{% for product in products %}
+<div class="col-12 col-sm-6 col-md-4 col-lg-3">
+    <div class="card" style="width: 18rem;">
+        <a class="img_and_title" href="{% url 'product_details' product.pk %}">
 
+            <img id="product_image" src="{{product.thumbnail.url}}" class="card-img-top " alt="...">
+
+            <div class="card-body ">
+
+            <h5 id="product_title" class="card-title text-center">{{product.title}}</h5>
+        </a>
+
+            <p class="card-text text-center">${{product.price}}</p>
+
+            <div class="d-flex justify-content-center">
+                <a href="#" class="btn btn-primary">Add to Cart</a>
             </div>
-            
+
         </div>
     </div>
-    </div>
-    {% endfor %}
+</div>
+{% endfor %}
