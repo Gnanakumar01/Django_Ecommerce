@@ -5,11 +5,43 @@ Add Product
 {% endblock %}
 
 {% block content %}
-<section class="d-flex row">
-    <div class="col">
-        <img src="{{product.thumbnail.url}}" class="w-100" alt="">
+<section class="d-flex row m-5">
+
+    <div class="col rounded-3">
+        <!-- {% for image in product.images.all %}
+        <div class="carousel-item {% if forloop.counter == 1 %} active {% endif %}">
+            <img id="carousel-image" src="{{image.img.url}}" class="d-block w-100" alt="...">
+        </div>
+        {% endfor %} -->
+        <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="..." class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="..." class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="..." class="d-block w-100" alt="...">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
     </div>
-    <div class="col">
+
+    <div class="col justify-contant-around">
+        <div>
+            <img class="rounded-3" src="{{product.thumbnail.url}}" alt="" width="200px" height="100px">
+        </div>
         <h2>
             {{product.title}}
         </h2>
@@ -17,7 +49,7 @@ Add Product
             {{product.desc}}
         </p>
         <p>
-            $ {{product.price}}
+            ${{product.price}}
         </p>
 
         <div class="d-flex flex-row">

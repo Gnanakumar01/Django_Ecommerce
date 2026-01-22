@@ -48,6 +48,12 @@ class CreateProduct(CreateView):
 class ProductDetail(DetailView):
     model = Product
     template_name= 'products/product_details.html'
+    context_object_name = 'product'
+
+    #Overriding the queryset to prefetch
+    #and andd the product images alongside products
+    def get_queryset(self):
+        return Product.objects.prefetch_related('images')
 
 class UpdateProduct(UpdateView):
     model = Product
