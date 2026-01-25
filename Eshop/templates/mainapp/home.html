@@ -5,9 +5,15 @@ Home
 {% endblock %}
 
 {% block content %}
-<!-- Hi, This is Home page
-<br>
-Current Page: {{ current_page }} -->
+
+<section>
 {% include 'mainapp/includes/carousel.html' %}
+</section>
+
+<section>
+{% include 'products/includes/productsSection.html' %}
+</section>
+
+
 {% endblock %}
 

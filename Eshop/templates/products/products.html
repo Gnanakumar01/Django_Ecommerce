@@ -6,11 +6,12 @@ Products
 
 {% block content %}
 <section class="d-flex justify-content-center ">
-    <a href="{% url 'add_product' %}" class="btn btn-success m-3">Add Product</a>
+    <a href="{% url 'add_product' %}" class="btn btn-success mt-3">Add Product</a>
 </section>
-<section class="">
-    <div class="row row-col-sm-6 row-col-md-4 row-col-lg-3">
-        {% include 'products/includes/productCard.html' %}
+
+<section class="container-fluid mb-5">
+    <div class="row">
+        {% include 'products/includes/productsSection.html' %}
     </div>
 </section>
 

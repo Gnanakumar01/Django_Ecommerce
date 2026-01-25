@@ -1,22 +1,38 @@
-{% for product in products %}
-<div class=" col-sm-6 col-md-4 col-lg-3 mb-5">
-    <div class="card" style="width: 18rem;">
+
+<div class="col-12 col-sm-6 col-md-4 col-lg-3 gy-3">
+    <div class="card" style="width: 17rem;">
+
         <a class="img_and_title" href="{% url 'product_details' product.pk %}">
 
-            <img id="product_image" src="{{product.thumbnail.url}}" class="card-img-top " alt="...">
+            {% if product.thumbnail %}
+            <img id="product_image" src="{{product.thumbnail.url}}" class="card-img-top " alt="{{product.title}}">
+            {% else %}
+            <div class="product-thumb placeholder-img">
+                No Image
+            </div>
+            {% endif %}
 
             <div class="card-body ">
 
-            <h5 id="product_title" class="card-title text-center">{{product.title}}</h5>
-        </a>
+                <h5 id="product_title" class="card-title text-center">{{product.title}}</h5>
 
-            <p class="card-text text-center">${{product.price}}</p>
+                <p class="card-text text-center">
+                    {{product.desc}}
+                </p>
+            <div>
+                 <p class="card-text text-center">&#8377;{{product.price}}</p>
 
-            <div class="d-flex justify-content-center">
-                <a href="#" class="btn btn-primary">Add to Cart</a>
+                 {% if product.stock > 0 %}
+                 <button class="btn btn-sm btn-primary w-100">
+                    Add to Card
+                 </button>
+                {% else %}
+                 <button class="btn btn-danger w-100">
+                    Out of Stock
+                 </button>
+                 {% endif %}
             </div>
-
-        </div>
+            </div>
+        </a>
     </div>
 </div>
-{% endfor %}
