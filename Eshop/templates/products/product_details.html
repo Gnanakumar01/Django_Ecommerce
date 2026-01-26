@@ -62,4 +62,9 @@ Add Product
         </div>
     </div>
 </section>
+
+<section>
+    {% csrf_token %}
+    {{form.as_p}}
+</section>
 {% endblock %}
