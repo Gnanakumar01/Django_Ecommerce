@@ -14,8 +14,16 @@ Add Product
 
                 {% for image in product.images.all %}
                 <div class="carousel-item {% if forloop.first %}active{% endif %}" data-bs-interval="10000">
-                    <img id="product-carousel-image" src="{{image.img.url}}" class="w-100 rounded-3" alt="Watch-product">
+                    
+                    
+                    <a href="" class="position-absolute top-0 end-0 text-danger"><i class="bi bi-trash3"></i></a>
+
+                    <a href="" class="position-absolute text-success"><i class="bi bi-pencil-square"></i></a>
+                   
+
+                    <img style="height: 400px" src="{{image.img.url}}" class="w-100 rounded-3" alt="Watch-product">
                 </div>
+
                 {% endfor %}
 
             </div>
