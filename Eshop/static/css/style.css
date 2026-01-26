@@ -21,3 +21,19 @@ body{
     color: black;
     text-decoration: none;
 }
+
+/* Product details page */
+#product-carousel-image{
+    height: 500px;
+}
+
+/* update product */
+.update-product{
+    display: flex;
+}
+
+/* add product */
+.add_product{
+    display: flex;
+    justify-content: center;
+}

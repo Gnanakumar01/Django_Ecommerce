@@ -7,11 +7,33 @@ Add Product
 {% block content %}
 <section class="d-flex row m-5">
 
-    <div class="col rounded-3">
+    <div class="col">
+        <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
 
+            <div class="carousel-inner">
+
+                {% for image in product.images.all %}
+                <div class="carousel-item {% if forloop.first %}active{% endif %}" data-bs-interval="10000">
+                    <img id="product-carousel-image" src="{{image.img.url}}" class="w-100 rounded-3" alt="Watch-product">
+                </div>
+                {% endfor %}
+
+            </div>
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
     </div>
 
-    <div class="col justify-contant-around">
+    <div class="col justify-contant-around gap-3">
         <div>
             <img class="rounded-3" src="{{product.thumbnail.url}}" alt="" width="200px" height="100px">
         </div>
@@ -25,7 +47,7 @@ Add Product
             ${{product.price}}
         </p>
 
-        <div class="d-flex flex-row">
+        <div class="d-flex  gap-3">
             <a href="" class="btn btn-outline-success">Add to Cart</a>
             <a href="{% url 'edit_product' product.pk %}" class="btn btn-warning">Edit</a>
             <a href="{% url 'delete_product' product.pk %}" class="btn btn-danger">Delete</a>
