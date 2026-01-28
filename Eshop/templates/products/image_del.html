@@ -1,0 +1,17 @@
+{% extends 'base/base.html' %}
+
+{% block title %}
+Add Product
+{% endblock %}
+Delete
+{% block content %}
+<section class="add_product">
+    <div>
+        <form  method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{form.as_p}}
+            <button type="submit">Delete</button>
+        </form>
+    </div>
+</section>
+{% endblock %}

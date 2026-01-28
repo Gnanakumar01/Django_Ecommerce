@@ -1,0 +1,17 @@
+{% extends 'base/base.html' %}
+
+{% block title %}
+edit
+{% endblock %}
+
+{% block content %}
+<section class="add_product">
+    <div>
+        <form  method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{form.as_p}}
+            <button type="submit">edit</button>
+        </form>
+    </div>
+</section>
+{% endblock %}
