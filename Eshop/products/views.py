@@ -28,6 +28,11 @@ def searchProducts(request):
             'query' : query,
             'products' : search_results
         }
+    else:
+        context = {
+            'query' : query,
+            'products' : None
+        }
 
     return render(request, template_name = template, context = context)
 

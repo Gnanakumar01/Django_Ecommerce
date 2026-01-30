@@ -8,7 +8,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mb-2 mb-lg-0">
+                <ul class="navbar-nav mb-2 mb-lg-0 ms-5">
                     <li class="nav-item">
                         <a class="nav-link {% if current_page == 'home' %} active {% endif %}" aria-current="page"
                             href="{% url 'home_page' %}">Home</a>
@@ -42,7 +42,7 @@
                     </form>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                            
+                            <i class="bi bi-person-circle"></i>
                             {% if user.is_authenticated %}
                                 {{user.username.capitalize}}
                             {% else %}

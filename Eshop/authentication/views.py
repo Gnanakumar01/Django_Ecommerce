@@ -11,11 +11,13 @@ from django.contrib.auth.views import (
 # CreateView CBV
 from django.views.generic import CreateView
 
+from .forms import UserCreationForm, UserRegisterForm
+
 # Create your views here.
 
 class UserRegisterView(CreateView):
     model = User
-    fields = ['username', 'password']
+    form_class = UserRegisterForm
     template_name = 'authentication/register.html'
     success_url = reverse_lazy('signin')
 
