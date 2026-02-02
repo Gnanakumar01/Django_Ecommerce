@@ -32,7 +32,12 @@ body{
 .update-product{
     display: flex;
 }
+#product_carousel{
+    height: 350px;
+    object-fit: cover;
+    border-radius: 10px;
 
+}
 /* add product */
 .add_product{
     display: flex;
