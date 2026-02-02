@@ -40,7 +40,16 @@
                             placeholder="Search" aria-label="Search" />
                         <button class="btn btn-outline-success" type="submit">Search</button>
                     </form>
-                    <li class="nav-item dropdown ms-5" style="padding-left: 100px;">
+            ]           
+                    <!-- Cart -->
+                     <li class="nav-item me-3 position-relative">
+                        <a class="nav-link" href="#">
+                            <i class="bi bi-cart3 fs-4"></i>
+                            <span class="cart-badge" id="cart-count">0</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
                             <i class="bi bi-person-circle"></i>
                             {% if user.is_authenticated %}

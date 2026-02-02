@@ -34,3 +34,17 @@ body{
     display: flex;
     justify-content: center;
 }
+
+/* add to cart */
+.cart-badge {
+            position: absolute;
+            top: 2px;
+            right: 0;
+            background: #f08804;
+            color: #000;
+            font-size: 11px;
+            font-weight: bold;
+            padding: 2px;
+            border-radius: 50%;
+            line-height: 1;
+        }
