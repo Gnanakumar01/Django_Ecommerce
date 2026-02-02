@@ -9,69 +9,79 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mb-2 mb-lg-0 ms-5">
-                    <li class="nav-item">
-                        <a class="nav-link {% if current_page == 'home' %} active {% endif %}" aria-current="page"
-                            href="{% url 'home_page' %}">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {% if current_page == 'about' %} active {% endif %}"
-                            href="{% url 'about_page' %}">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {% if current_page == 'contact' %} active {% endif %}"
-                            href="{% url 'contact_page' %}">Contact</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Manage
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{% url 'products_page' %}">Products</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </li>
-                    <form class="d-flex" role="search" method="get" action="{% url 'search_products' %}">
-                        <input name="query_text" value="{{query}}" class="form-control me-2" type="search"
-                            placeholder="Search" aria-label="Search" />
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form>
-            ]           
-                    <!-- Cart -->
-                     <li class="nav-item me-3 position-relative">
-                        <a class="nav-link" href="#">
-                            <i class="bi bi-cart3 fs-4"></i>
-                            <span class="cart-badge" id="cart-count">0</span>
-                        </a>
-                    </li>
+                    <div class="col d-flex gap-3 ms-5">
+                        <li class="nav-item">
+                            <a class="nav-link {% if current_page == 'home' %} active {% endif %}" aria-current="page"
+                                href="{% url 'home_page' %}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if current_page == 'about' %} active {% endif %}"
+                                href="{% url 'about_page' %}">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if current_page == 'contact' %} active {% endif %}"
+                                href="{% url 'contact_page' %}">Contact</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Manage
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{% url 'products_page' %}">Products</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </li>
+                    </div>
+                    <div class="col ms-5">
+                        <form class="d-flex" method="get" action="{% url 'search_products' %}">
+                            <input type="search" name="query_text" class="form-control me-2"
+                                placeholder="Search products..." value="{{ query }}" aria-label="Search" >
+                            <button class="btn btn-outline-success" type="submit">
+                                <i class="bi bi-search"></i>
+                            </button>
+                        </form>
+                    </div>
 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                            <i class="bi bi-person-circle"></i>
-                            {% if user.is_authenticated %}
+                    <!-- Cart -->
+                    <div class="col d-flex me-0 ms-5">
+                        <li class="nav-item position-relative">
+                            <a class="nav-link p-0" href="{% url 'view_cart' %}">
+                                <i class="bi bi-cart3 fs-4"></i>
+                                {% if user.is_authenticated %}
+                                <span class="cart-badge" id="cart-count">0</span>
+                                {% endif%}
+                            </a>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                                <i class="bi bi-person-circle"></i>
+                                {% if user.is_authenticated %}
                                 {{user.username.capitalize}}
-                            {% else %}
+                                {% else %}
                                 Hi User !
-                            {% endif %}
-                        </a>
-                        <ul class="dropdown-menu">
-                            {% if user.is_authenticated %}
-                            <li>
-                                <form action="{% url 'logout' %}" method="post">
-                                    {% csrf_token %}
-                                    <button class="dropdown-item text-danger">Logout</button>
-                                </form>
-                            </li>
-                            {% else %}
-                            <li><a class="dropdown-item" href="{% url 'signup' %}">Register</a></li>
-                            <li><a class="dropdown-item" href="{% url 'signin' %}">Login</a></li>
-                            {% endif %}
-                        </ul>
-                    </li>
+                                {% endif %}
+                            </a>
+                            <ul class="dropdown-menu">
+                                {% if user.is_authenticated %}
+                                <li>
+                                    <form action="{% url 'logout' %}" method="post">
+                                        {% csrf_token %}
+                                        <button class="dropdown-item text-danger">Logout</button>
+                                    </form>
+                                </li>
+                                {% else %}
+                                <li><a class="dropdown-item" href="{% url 'signup' %}">Register</a></li>
+                                <li><a class="dropdown-item" href="{% url 'signin' %}">Login</a></li>
+                                {% endif %}
+                            </ul>
+                        </li>
+                    </div>
                 </ul>
             </div>
         </div>

@@ -23,10 +23,10 @@ class AddToCart(View):
         # get cartitem for this product-user combination or create if it doesn't exist
         item, created = CartItem.objects.get_or_create(
             user = request.user,
-            Product = this_product
+            product = this_product
         )
 
-        item.quentity += 1
+        item.quantity += 1
         item.save()
         cart_count = CartItem.objects.filter(user = request.user).count()
 
@@ -44,5 +44,12 @@ def view_cart(request):
     cart_items = CartItem.objects.filter(user = request.user)
 
     context ={
-        ''
+        'cart_items' : cart_items 
     }
+    template = 'cart/cart.html'
+    return render(request, template_name=template, context=context)
+
+def get_cart_item_count(request):
+    return JsonResponse({
+        'cart_count' : CartItem.objects.filter(user = request.user).count()
+    })

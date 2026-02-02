@@ -1,37 +1,35 @@
-<div class=" product-card col-12 col-sm-6 col-md-4 col-lg-3 gy-3" data-product-id="{{product.id}}">
-    <div class="card" style="width: 17rem;">
+<div class=" col-12 col-sm-6 col-md-4 col-lg-3 gy-3" >
+    <div class="card product-card" data-product-id="{{product.id}}" style="width: 17rem;">
+        {% if product.thumbnail %}
+        <img id="product_image" src="{{product.thumbnail.url}}" class="card-img-top " alt="{{product.title}}">
+        {% else %}
+        <div class="product-thumb placeholder-img">
+            No Image
+        </div>
+        {% endif %}
 
-        <a class="img_and_title" href="{% url 'product_details' product.pk %}">
+        <div class="card-body ">
 
-            {% if product.thumbnail %}
-            <img id="product_image" src="{{product.thumbnail.url}}" class="card-img-top " alt="{{product.title}}">
-            {% else %}
-            <div class="product-thumb placeholder-img">
-                No Image
-            </div>
-            {% endif %}
-
-            <div class="card-body ">
-
+            <a class="img_and_title" href="{% url 'product_details' product.pk %}">
                 <h5 id="product_title" class="card-title text-center">{{product.title}}</h5>
+            </a>
 
-                <p class="card-text text-center">
-                    {{product.desc}}
-                </p>
+            <p class="card-text text-center">
+                {{product.desc}}
+            </p>
             <div>
-                 <p class="card-text text-center">&#8377;{{product.price}}</p>
+                <p class="card-text text-center">&#8377;{{product.price}}</p>
 
-                 {% if product.stock > 0 %}
-                 <button class="btn btn-sm btn-primary w-100 add-to-cart">
+                {% if product.stock > 0 %}
+                <button class="btn btn-sm btn-primary w-100 add-to-cart">
                     Add to Card
-                 </button>
+                </button>
                 {% else %}
-                 <button class="btn btn-danger w-100">
+                <button class="btn btn-danger w-100">
                     Out of Stock
-                 </button>
-                 {% endif %}
+                </button>
+                {% endif %}
             </div>
-            </div>
-        </a>
+        </div>
     </div>
 </div>
