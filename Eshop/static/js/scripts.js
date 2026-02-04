@@ -5,15 +5,6 @@
 
 // const cart_count = document.getElementById('cart-count');
 
-// // function getCookie(name){
-// //     let cookieValue = null;
-
-// //     if (document.cookie && document.cookie !== 1) {
-// //         const cookies = document.cookie.split()
-// //     }
-        
-// // }
-
 // const csrfToken = document.querySelector("[name = csrfmiddlewaretoken]").value
 
 // //  add to cart url
@@ -57,7 +48,7 @@
 //         }
 //     }
 //     catch(error){
-//         console.log("Cart error:",error)
+//         console.error("Cart error:",error)
 //     }
 //     finally{
 //         btn.disabled = false;
@@ -120,7 +111,7 @@ products_container.addEventListener('click', async function (event) {
     }
     finally {
         btn.disabled = false;
-        btn.innerText = "Add to Cart";
+        btn.innerText = "Add to Card";
     }
 });
 

@@ -8,11 +8,11 @@ Add Product
 <section class="d-flex row m-5">
 
     <div class="col">
-        <div id="carouselExampleRide" class="carousel slide" data-bs-ride="true">
+        <div id="carouselExampleRide" class="carousel slide position-relative" data-bs-ride="true" >
             <div class="carousel-inner">
 
                 {% for image in product.images.all %}
-                <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                <div class="position-relative carousel-item {% if forloop.first %}active{% endif %}">
 
                     <a href="{% url 'edit_prod_image' image.pk %}" class="btn btn-success position-fixed "><i class="bi bi-pencil-square"></i></a>
 
@@ -25,12 +25,12 @@ Add Product
                 {% endfor %}
 
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleRide"
+            <button class="carousel-control-prev" id="product-carousel-button" type="button" data-bs-target="#carouselExampleRide"
                 data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
             </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleRide"
+            <button class="carousel-control-next" id="product-carousel-button" type="button" data-bs-target="#carouselExampleRide"
                 data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden bg-danger">Next</span>
@@ -51,7 +51,6 @@ Add Product
         <p>
             ${{product.price}}
         </p>
-
         <div class="d-flex  gap-3">
             <a href="" class="btn btn-outline-success">Add to Cart</a>
             <a href="{% url 'edit_product' product.pk %}" class="btn btn-warning">Edit</a>
