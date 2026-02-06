@@ -7,12 +7,47 @@ Delete Product
 {% block content %}
 
 <section class="container-fluid">
-    {% for item in cart_items %}
-    <div>
-        {{item}}
-    </div>
-    {% endfor %}
+{% csrf_token %}
+<h2 class="cart-title">My cart</h2>
 
+{% if cart_items %}
+
+<div class="row">
+    <div class="col">
+
+        {% for item in cart_items %}
+            {% include 'cart/includes/product_cart_item.html' %}
+        {% endfor %}
+    </div>
+
+    <!-- Right side -->
+     <div class="col">
+        <div class="cart-summary card shadow-sm sticky - top">
+            <div class="card-body">
+                <h5 class="summary-title">Order Summary</h5>
+
+                <div class="summary-row">
+                    <span>Total Items</span>
+                    <span>{{ total_quantity }}</span>
+                </div>
+
+                <div class="summary-row total">
+                    <span>Total Price</span>
+                    <span>{{total_price}}</span>
+                </div>
+
+                <a href="{% url 'create_order' %}" class=" btn btn-warning w-100 fw-bold">
+                    Proceed to Checkout
+                </a>
+            </div>
+        </div>
+     </div>
+</div>
+{% else %}
+
+    {% include 'cart/includes/empty_cart.html' %}
+
+{% endif %}
 </section>
 
 {% endblock %}

@@ -26,7 +26,7 @@ class UserRegisterView(CreateView):
 class UserLoginView(LoginView):
     template_name = 'authentication/login.html'
 
-# Passwprd Reset Flow
+# Password Reset Flow
 
 import random
 from django.core.mail import send_mail
@@ -106,7 +106,7 @@ def set_new_password(request):
     try:
         user = User.objects.get(email=email)
     except User.DoesNotExist:
-        return HttpResponse("User not found", status=404)
+        return HttpResponse(f"User not found", status=404)
     
     if request.method == 'POST':
         form = SetPasswordForm(user, request.POST)
@@ -122,5 +122,5 @@ def set_new_password(request):
         context = {'form':form}
 
     return render(request = request,
-                  template_name='authentication/pwd_reset/set_new_passoword.html',
+                  template_name='authentication/pwd_reset/set_new_password.html',
                   context=context)
