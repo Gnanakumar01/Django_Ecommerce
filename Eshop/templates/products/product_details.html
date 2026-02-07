@@ -52,7 +52,7 @@ Add Product
             ${{product.price}}
         </p>
         <div class="d-flex  gap-3">
-            <a href="" class="btn btn-outline-success">Add to Cart</a>
+            <a href="" class="btn btn-outline-success add-to-cart">Add to Cart</a>
             <a href="{% url 'edit_product' product.pk %}" class="btn btn-warning">Edit</a>
             <a href="{% url 'delete_product' product.pk %}" class="btn btn-danger">Delete</a>
         </div>

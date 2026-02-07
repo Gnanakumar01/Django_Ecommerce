@@ -1,15 +1,14 @@
-<div class=" col-12 col-sm-6 col-md-4 col-lg-3 gy-3" >
-    <div class="card product-card" data-product-id="{{product.id}}" style="width: 17rem;">
+<div class="product-card">
+    <div id="products_card" class="card" data-product-id="{{product.id}}" style="width: 17rem;">
         {% if product.thumbnail %}
-        <img id="product_image" src="{{product.thumbnail.url}}" class="card-img-top " alt="{{product.title}}">
+        <img id="product_image" src="{{product.thumbnail.url}}" class="card-img-top" alt="{{product.title}}">
         {% else %}
         <div class="product-thumb placeholder-img">
             No Image
         </div>
         {% endif %}
 
-        <div class="card-body ">
-
+        <div class="card-body">
             <a class="img_and_title" href="{% url 'product_details' product.pk %}">
                 <h5 id="product_title" class="card-title text-center">{{product.title}}</h5>
             </a>
@@ -21,8 +20,8 @@
                 <p class="card-text text-center">&#8377;{{product.price}}</p>
 
                 {% if product.stock > 0 %}
-                <button class="btn btn-sm btn-primary w-100 add-to-cart">
-                    Add to Card
+                <button class="btn btn-sm w-100 add-to-cart rounded-5" id="add_to_cart_btn">
+                    Add to Cart
                 </button>
                 {% else %}
                 <button class="btn btn-danger w-100">
