@@ -3,15 +3,31 @@ from django.views import View
 from django.http import JsonResponse
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
-from django.views.decorators.http import require_POST
-from django.db.models import Sum
 
 from .models import CartItem
 from products.models import Product
 
 
+# =============================
+# HELPER — totals calculator
+# =============================
+
+def cart_totals(user):
+    items = CartItem.objects.filter(user=user)
+
+    total_qty = sum(i.quantity for i in items)
+    total_price = sum(i.subtotal for i in items)
+
+    return total_qty, total_price
+
+
+# =============================
+# ADD TO CART
+# =============================
+
 class AddToCart(View):
     def post(self, request, *args, **kwargs):
+
         if not request.user.is_authenticated:
             return JsonResponse({
                 'error': 'login_required',
@@ -19,90 +35,197 @@ class AddToCart(View):
             }, status=401)
 
         product_id = request.POST.get('product_id')
-        this_product = get_object_or_404(Product, id=product_id)
+        product = get_object_or_404(Product, id=product_id)
 
         item, created = CartItem.objects.get_or_create(
             user=request.user,
-            product=this_product,
-            defaults={"quantity": 1}
+            product=product
         )
 
-        if not created:
-            item.quantity += 1
-            item.save()
+        item.quantity += 1
+        item.save()
 
-        cart_count = CartItem.objects.filter(user=request.user).aggregate(
-            total=Sum("quantity")
-        )["total"] or 0
+        total_qty, total_price = cart_totals(request.user)
 
         return JsonResponse({
-            'message': f'{this_product.title.capitalize()} was added to cart',
-            'cart_count': cart_count
+            "product_id": product.id,
+            "qty": item.quantity,
+            "subtotal": item.subtotal,
+            "cart_count": total_qty,
+            "total_qty": total_qty,
+            "total_price": total_price,
+            "message": f"{product.title} added to cart"
         })
 
+
+# =============================
+# INCREASE QTY
+# =============================
+
+class IncreaseCartItem(View):
+    def post(self, request, *args, **kwargs):
+
+        if not request.user.is_authenticated:
+            return JsonResponse({
+                'error': 'login_required',
+                'redirect_url': reverse('signin')
+            }, status=401)
+
+        product_id = request.POST.get('product_id')
+
+        item = get_object_or_404(
+            CartItem,
+            user=request.user,
+            product_id=product_id
+        )
+
+        item.quantity += 1
+        item.save()
+
+        total_qty, total_price = cart_totals(request.user)
+
+        return JsonResponse({
+            "product_id": product_id,
+            "qty": item.quantity,
+            "subtotal": item.subtotal,
+            "cart_count": total_qty,
+            "total_qty": total_qty,
+            "total_price": total_price
+        })
+
+
+# =============================
+# DECREASE QTY
+# =============================
+
+class DecreaseCartItem(View):
+    def post(self, request, *args, **kwargs):
+
+        if not request.user.is_authenticated:
+            return JsonResponse({
+                'error': 'login_required',
+                'redirect_url': reverse('signin')
+            }, status=401)
+
+        product_id = request.POST.get('product_id')
+
+        item = get_object_or_404(
+            CartItem,
+            user=request.user,
+            product_id=product_id
+        )
+
+        item.quantity -= 1
+
+        if item.quantity <= 0:
+            item.delete()
+            qty = 0
+            subtotal = 0
+        else:
+            item.save()
+            qty = item.quantity
+            subtotal = item.subtotal
+
+        total_qty, total_price = cart_totals(request.user)
+
+        return JsonResponse({
+            "product_id": product_id,
+            "qty": qty,
+            "subtotal": subtotal,
+            "cart_count": total_qty,
+            "total_qty": total_qty,
+            "total_price": total_price
+        })
+
+
+# =============================
+# REMOVE ITEM
+# =============================
+
+class RemoveCartItem(View):
+    def post(self, request, *args, **kwargs):
+
+        if not request.user.is_authenticated:
+            return JsonResponse({
+                'error': 'login_required',
+                'redirect_url': reverse('signin')
+            }, status=401)
+
+        product_id = request.POST.get('product_id')
+
+        CartItem.objects.filter(
+            user=request.user,
+            product_id=product_id
+        ).delete()
+
+        total_qty, total_price = cart_totals(request.user)
+
+        return JsonResponse({
+            "product_id": product_id,
+            "qty": 0,
+            "subtotal": 0,
+            "cart_count": total_qty,
+            "total_qty": total_qty,
+            "total_price": total_price
+        })
+
+
+# =============================
+# CART PAGE VIEW
+# =============================
 
 @login_required
 def view_cart(request):
     cart_items = CartItem.objects.filter(user=request.user)
-    return render(request, 'cart/cart.html', {'cart_items': cart_items})
+
+    total_quantity = sum(item.quantity for item in cart_items)
+    total_price = sum(item.subtotal for item in cart_items)
+
+    context = {
+        "cart_items": cart_items,
+        "total_quantity": total_quantity,
+        "total_price": total_price,
+    }
+
+    return render(request, "cart/cart.html", context)
 
 
-@login_required
+# =============================
+# CART BADGE COUNT
+# =============================
+
 def get_cart_item_count(request):
-    cart_count = CartItem.objects.filter(user=request.user).aggregate(
-        total=Sum("quantity")
-    )["total"] or 0
 
-    return JsonResponse({'cart_count': cart_count})
+    if not request.user.is_authenticated:
+        return JsonResponse({'cart_count': 0})
 
-
-# Quantity increase, decrease, remove
-
-def get_cart_total(user):
-    return (
-        CartItem.objects.filter(user=user)
-        .aggregate(total=Sum("subtotal"))["total"] or 0
-    )
-
-
-@login_required
-def increase_quantity(request, product_id):
-    item = get_object_or_404(CartItem, user=request.user, product_id=product_id)
-    item.quantity += 1
-    item.save()
+    total_qty, _ = cart_totals(request.user)
 
     return JsonResponse({
-        "quantity": item.quantity,
-        "subtotal": item.subtotal,
-        "cart_total": get_cart_total(request.user)
+        'cart_count': total_qty
     })
 
 
-@login_required
-def decrease_quantity(request, product_id):
-    item = get_object_or_404(CartItem, user=request.user, product_id=product_id)
+# =============================
+# GET ITEM QTY (for detail page hydration)
+# =============================
 
-    if item.quantity > 1:
-        item.quantity -= 1
-        item.save()
-        quantity = item.quantity
-    else:
-        item.delete()
-        quantity = 0
+class GetCartItemQty(View):
+    def get(self, request, *args, **kwargs):
 
-    return JsonResponse({
-        "quantity": quantity,
-        "subtotal": item.subtotal if quantity else 0,
-        "cart_total": get_cart_total(request.user)
-    })
+        if not request.user.is_authenticated:
+            return JsonResponse({"qty": 0})
 
+        product_id = request.GET.get("product_id")
 
-@login_required
-def remove_item(request, product_id):
-    item = get_object_or_404(CartItem, user=request.user, product_id=product_id)
-    item.delete()
+        item = CartItem.objects.filter(
+            user=request.user,
+            product_id=product_id
+        ).first()
 
-    return JsonResponse({
-        "cart_total": get_cart_total(request.user)
-    })
+        qty = item.quantity if item else 0
 
+        return JsonResponse({
+            "product_id": product_id,
+            "qty": qty
+        })

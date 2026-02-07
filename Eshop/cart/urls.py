@@ -2,7 +2,7 @@ from django.urls import path
 
 from .views import AddToCart
 
-from .views import view_cart, get_cart_item_count, increase_quantity,decrease_quantity,remove_item
+from .views import view_cart, get_cart_item_count, IncreaseCartItem,DecreaseCartItem,RemoveCartItem
 
 
 urlpatterns =[
@@ -10,7 +10,7 @@ urlpatterns =[
     path('add/', AddToCart.as_view(), name='add_to_cart'),
     path('cart/count/',get_cart_item_count, name = 'cart_count'),
 
-    path("increase/<int:product_id>/", increase_quantity, name="increase_quantity"),
-    path("decrease/<int:product_id>/", decrease_quantity, name="decrease_quantity"),
-    path("remove/<int:product_id>/", remove_item, name="remove_item"),  
+    path("increase/", IncreaseCartItem.as_view(), name="increase_quantity"),
+    path("decrease/", DecreaseCartItem.as_view(), name="decrease_quantity"),
+    path("remove/", RemoveCartItem.as_view(), name="remove_item"),  
 ]

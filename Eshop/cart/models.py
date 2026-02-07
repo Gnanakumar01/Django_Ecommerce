@@ -21,3 +21,17 @@ class CartItem(models.Model):
     @property
     def subtotal(self):
         return self.product.price * self.quantity
+    
+
+# from django.db.models import Sum, F
+
+# def cart_totals(user):
+#     items = CartItem.objects.filter(user=user)
+
+#     total_qty = items.aggregate(qty=Sum("quantity"))["qty"] or 0
+#     total_price = items.aggregate(
+#         total=Sum(F("quantity") * F("product__price"))
+#     )["total"] or 0
+
+#     return total_qty, total_price
+
