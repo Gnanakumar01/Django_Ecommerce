@@ -1,4 +1,4 @@
-<section id="products_main_container" class="container-fluid mt-3 ms-0 w-100" data-add-url ="{% url 'add_to_cart' %}">
+<section id="products-container" class="container-fluid mt-3 ms-0 w-100" data-add-url ="{% url 'add_to_cart' %}">
 {% csrf_token %}  
     <div class="products_container">
         {% for product in products %}

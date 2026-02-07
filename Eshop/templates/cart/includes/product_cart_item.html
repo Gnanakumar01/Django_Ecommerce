@@ -1,12 +1,10 @@
-<div class="cart-item card shadow-sm"
-     data-product-id="{{ item.product.id }}">
+<div class="cart-item card shadow-sm" data-product-id="{{ item.product.id }}">
 
     <div class="row g-0 align-items-center">
 
         <!-- Image -->
         <div class="col-md-3 text-center cart-thumb">
-            <img src="{{ item.product.thumbnail.url }}"
-                 class="img-fluid rounded">
+            <img src="{{ item.product.thumbnail.url }}" class="img-fluid rounded">
         </div>
 
         <!-- Details -->
@@ -52,6 +50,11 @@
         <div class="col-md-3 text-end cart-subtotal subtotal">
             ₹{{ item.subtotal }}
         </div>
+
+        <form style="display:none;">
+            {% csrf_token %}
+        </form>
+
 
     </div>
 

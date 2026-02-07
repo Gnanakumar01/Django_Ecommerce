@@ -17,3 +17,7 @@ class CartItem(models.Model):
 
     def __str__(self):
         return f"Product:{self.product.title.capitalize()} in {self.user.username.capitalize()}'s cart - Quentity : {self.quantity}"
+    
+    @property
+    def subtotal(self):
+        return self.product.price * self.quantity
