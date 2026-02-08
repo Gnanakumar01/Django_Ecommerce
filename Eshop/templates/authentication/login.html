@@ -5,41 +5,32 @@ Login
 
 {% block content %}
 
-<section>
-    <div class="container mt-5 m-auto">
-        <div class="d-flex justify-content-center">
-            <div class="col-md-5">
-                <div class="card shadow-lg border-0 rounded-4">
-                    <div class="card-body mb-4">
-                        <h3 class="text-center">
-                            Login Account
-                        </h3>
-                        <form method="post" enctype="multipart/form-data">
-                            {% csrf_token %}
-                            {% if form.non_field_errors %}
-                            <div class="alert alert-danger">
-                                {{form.non_field_errors}}
-                            </div>
-                            {% endif %}
-
-                            {% for field in form %}
-                            {% include 'base/includes/basic_form_field.html' %}
-                            {% endfor %}
-                            <button type="submit" class="btn btn-warning w-100">Login</button>
-                            <p class="text-center mt-3 mb-0">
-                                Don't have an account? Sign up
-                                <a href="{% url 'signup' %}">Here</a>
-                            </p>
-                            <p class="text-center">
-                                <a href="{% url 'send_otp' %}" >Forget Password</a>
-                            </p>
-                        </form>
-                    </div>
+<section class="login_section">
+    <div class="login_container">
+            <h3 class="text-center">
+                Login Account
+            </h3>
+            <form class="login-form" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% if form.non_field_errors %}
+                <div class="alert alert-danger">
+                    {{form.non_field_errors}}
                 </div>
-            </div>
-        </div>
+                {% endif %}
 
-    </div>
+                {% for field in form %}
+                {% include 'base/includes/basic_form_field.html' %}
+                {% endfor %}
+                <button type="submit">Login</button>
+                <p class="text-center mt-3 mb-0">
+                    Don't have an account? Sign up
+                    <a href="{% url 'signup' %}">Here</a>
+                </p>
+                <p class="text-center">
+                    <a href="{% url 'send_otp' %}">Forget Password</a>
+                </p>
+            </form>
+        </div>
 </section>
 
 {% endblock %}

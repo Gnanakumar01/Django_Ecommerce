@@ -9,7 +9,7 @@ Delete Product
 <section id="cart-page" class="container-fluid"
 data-plus-url="{% url 'increase_quantity' %}" 
 data-minus-url = "{% url 'decrease_quantity' %}"
-data-remove-url = "{% url 'remove_item' % }">
+data-remove-url = "{% url 'remove_item' %}">
 {% csrf_token %}
 <h2 class="cart-title">My cart</h2>
 

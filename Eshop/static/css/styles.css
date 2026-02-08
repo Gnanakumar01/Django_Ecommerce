@@ -8,7 +8,7 @@ body{
     background-color: grey;
 }
 
-/* ---Home page--- */
+/* HOME PAGE*/
 #carousel-image { 
    object-fit: cover;
    border-radius: 10px;
@@ -102,7 +102,7 @@ body{
 }
 
 
-/* Products page */
+/* PRODUCT PAGE */
 #product_image{
     height: 200px;
     object-fit: cover;
@@ -150,4 +150,45 @@ body{
     padding: 2px 6px;
     border-radius: 50%;
     line-height: 1;
+}
+
+/* LOGIN PAGE */
+.login_section{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+.login_container{
+    width: 30vw;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0px 10px 25px 10px rgba(0, 0, 0, 0.08);
+}
+.login-form{
+    input{
+        width: 100%;
+        border-radius: 8px;
+        border: 1.5px solid rgb(181, 179, 179);
+        padding: 5px;
+        &:focus{
+            outline: none;
+            border: 1.5px solid rgb(51, 198, 248);
+        }
+    }
+    button{
+        width: 100%;
+        background-color: rgb(77, 209, 252);
+        margin-top: 20px;
+        border: none;
+        border-radius: 8px;
+        padding: 5px;
+        color: white;
+        &:hover{
+            background-color: rgb(1, 192, 255);
+            
+        }
+
+    }
 }
