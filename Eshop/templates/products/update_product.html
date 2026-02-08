@@ -5,9 +5,9 @@ Edit Product
 {% endblock %}
 
 {% block content %}
-<section class="update-product">
-    <div>
-        <form method="post">
+<section class="update-product crud_container">
+    <div class="update_form_container">
+        <form class="update_form" method="post">
             {% csrf_token %}
             {{form.as_p}}
             <button type="submit">Update Product</button>

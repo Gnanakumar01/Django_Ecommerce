@@ -5,9 +5,9 @@ Add Product
 {% endblock %}
 
 {% block content %}
-<section class="add_product">
-    <div>
-        <form  method="post" enctype="multipart/form-data">
+<section class="crud_container">
+    <div class="add_form_container">
+        <form class="add_form"  method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{form.as_p}}
             <button type="submit">Save</button>

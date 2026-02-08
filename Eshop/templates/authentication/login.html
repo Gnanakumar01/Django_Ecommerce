@@ -10,7 +10,7 @@ Login
             <h3 class="text-center">
                 Login Account
             </h3>
-            <form class="login-form" method="post" enctype="multipart/form-data">
+            <form class="login_form" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 {% if form.non_field_errors %}
                 <div class="alert alert-danger">
