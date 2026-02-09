@@ -21,7 +21,8 @@
                     <li class="nav-item"> <a class="nav-link {% if current_page == 'contact' %} active {% endif %}"
                             href="{% url 'contact_page' %}">Contact</a>
                     </li>
-
+                    
+                    {% if user.is_staff %}
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false"> Manage
@@ -32,6 +33,8 @@
                             <li><a class="dropdown-item" href="{% url 'carousel_list' %}">Carousels</a></li>
                         </ul>
                     </li>
+                    {% endif %}
+                    
                     <!-- Cart -->
                     <li class="nav-item position-relative ms-3">
                         <a class="nav-link p-0" href="{% url 'view_cart' %}">

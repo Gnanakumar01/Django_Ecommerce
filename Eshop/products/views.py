@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from .models import Product
+
+from .forms import ProductForm, ProductImageForm
 # Create your views here.
 
 def productView(request):
@@ -82,7 +84,7 @@ class ProductDetail(FormMixin,DetailView):
 class UpdateProduct(UpdateView):
     model = Product
     template_name = 'products/update_product.html'
-    fields = '__all__'
+    form_class = ProductForm
     success_url = '/'
 
 class DeleteProduct(DeleteView):

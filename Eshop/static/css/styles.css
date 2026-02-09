@@ -112,10 +112,28 @@ body {
 
 #product_carousel {
     height: 350px;
-    object-fit: cover;
+    object-fit: contain;
     border-radius: 10px;
 
 }
+
+.upload_carousel_section {
+    display: flex;
+    justify-content: center;
+    margin: 30px;
+
+    .upload_product_carousel {
+        width: 30vw;
+        padding: 10px;
+        border-radius: 8px;
+        box-shadow: 0px 10px 25px 10px rgba(0, 0, 0, 0.08);
+
+        h4 {
+            text-align: center;
+        }
+    }
+}
+
 
 /* cart */
 .cart-badge {
@@ -206,9 +224,8 @@ body {
 }
 
 .add_form,
-.delete_form,
 .update_form {
-    label{
+    label {
         font-weight: bold;
     }
 
@@ -216,18 +233,20 @@ body {
         width: 100%;
         border-radius: 8px;
         border: 1.5px solid rgb(181, 179, 179);
-        &:focus{
+
+        &:focus {
             outline: none;
             border: 1.5px solid rgb(51, 198, 248);
         }
     }
 
-    textarea{
+    textarea {
         width: 100%;
         height: 50px;
         border-radius: 8px;
         border: 1.5px solid rgb(181, 179, 179);
-        &:focus{
+
+        &:focus {
             outline: none;
             border: 1.5px solid rgb(51, 198, 248);
         }
@@ -243,6 +262,35 @@ body {
 
         &:hover {
             background-color: #4f46e5;
+        }
+    }
+}
+
+.delete_form_section{
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.delete_form_container {
+    width: 40vw;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0px 10px 25px 10px rgba(0, 0, 0, 0.08);
+}
+
+.delete_form {
+    display: flex;
+    justify-content: center;
+
+    button{
+        border: none;
+        padding: 5px;
+        border-radius: 8px;
+        color: white;
+        background-color: rgb(251, 65, 65);
+        &:hover{
+            background-color: red;
         }
     }
 }
