@@ -6,17 +6,17 @@ Delete Product
 
 {% block content %}
 
-<section id="cart-page" class="container-fluid"
+<section style="padding: 30px;" id="cart-page" class="container-fluid"
 data-plus-url="{% url 'increase_quantity' %}" 
 data-minus-url = "{% url 'decrease_quantity' %}"
 data-remove-url = "{% url 'remove_item' %}">
 {% csrf_token %}
-<h2 class="cart-title">My cart</h2>
+<h2 class="cart-title" style="text-align: center;">My cart</h2>
 
 {% if cart_items %}
 
-<div class="row">
-    <div class="col">
+<div class="cart_container">
+    <div class="cart_details">
 
         {% for item in cart_items %}
             {% include 'cart/includes/product_cart_item.html' %}
@@ -24,8 +24,7 @@ data-remove-url = "{% url 'remove_item' %}">
     </div>
 
     <!-- Right side -->
-     <div class="col">
-        <div class="cart-summary card shadow-sm sticky-top">
+     <div class="cart_summary">
             <div class="card-body">
                 <h5 class="summary-title">Order Summary</h5>
 
@@ -36,14 +35,13 @@ data-remove-url = "{% url 'remove_item' %}">
 
                 <div class="summary-row total">
                     <span>Total Price :</span>
-                    <span>{{total_price}}</span>
+                    <span>₹ {{total_price}}</span>
                 </div>
 
-                <a href="{% url 'create_order' %}" class=" btn btn-warning w-100 fw-bold">
+                <a href="{% url 'create_order' %}" class="btn w-100 fw-bold" style="background-color: green; color: white; margin-top: 10px;">
                     Proceed to Checkout
                 </a>
             </div>
-        </div>
      </div>
 </div>
 {% else %}

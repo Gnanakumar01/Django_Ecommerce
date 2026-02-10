@@ -8,9 +8,7 @@ from .models import CartItem
 from products.models import Product
 
 
-# =============================
 # HELPER — totals calculator
-# =============================
 
 def cart_totals(user):
     items = CartItem.objects.filter(user=user)
@@ -21,10 +19,7 @@ def cart_totals(user):
     return total_qty, total_price
 
 
-# =============================
 # ADD TO CART
-# =============================
-
 class AddToCart(View):
     def post(self, request, *args, **kwargs):
 
@@ -58,9 +53,7 @@ class AddToCart(View):
         })
 
 
-# =============================
 # INCREASE QTY
-# =============================
 
 class IncreaseCartItem(View):
     def post(self, request, *args, **kwargs):
@@ -94,9 +87,7 @@ class IncreaseCartItem(View):
         })
 
 
-# =============================
 # DECREASE QTY
-# =============================
 
 class DecreaseCartItem(View):
     def post(self, request, *args, **kwargs):
@@ -138,9 +129,7 @@ class DecreaseCartItem(View):
         })
 
 
-# =============================
 # REMOVE ITEM
-# =============================
 
 class RemoveCartItem(View):
     def post(self, request, *args, **kwargs):
@@ -170,9 +159,7 @@ class RemoveCartItem(View):
         })
 
 
-# =============================
 # CART PAGE VIEW
-# =============================
 
 @login_required
 def view_cart(request):
@@ -190,9 +177,8 @@ def view_cart(request):
     return render(request, "cart/cart.html", context)
 
 
-# =============================
+
 # CART BADGE COUNT
-# =============================
 
 def get_cart_item_count(request):
 
@@ -206,9 +192,9 @@ def get_cart_item_count(request):
     })
 
 
-# =============================
+
 # GET ITEM QTY (for detail page hydration)
-# =============================
+
 
 class GetCartItemQty(View):
     def get(self, request, *args, **kwargs):

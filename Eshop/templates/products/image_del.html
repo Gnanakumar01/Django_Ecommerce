@@ -5,8 +5,10 @@ Add Product
 {% endblock %}
 Delete
 {% block content %}
-<section class="add_product">
+<section class="add_product" style="margin: 30px;">
     <div>
+        <h3 style="color: red; text-align: center;">Confim to Delete The image!...</h3>
+
         <form  method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{form.as_p}}

@@ -5,9 +5,10 @@ Forget Password
 {% endblock %}
 
 {% block content %}
-<div class="container pt-5">
+<section class="send_otp_section">
+<div class="send_otp_container">
     <h2>Send opt to Register Email</h2>
-    <form method="POST">
+    <form method="post" class="send_otp_form">
         {% csrf_token %}
         <div class="mb-3">
             <label for="email" class="form-email">
@@ -18,4 +19,5 @@ Forget Password
         <button type="submit" class="btn btn-success">Send Otp</button>
     </form>
 </div>
+</section>
 {% endblock %}

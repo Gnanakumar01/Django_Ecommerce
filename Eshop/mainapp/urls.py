@@ -2,8 +2,10 @@ from django.urls import path
 
 from . import views 
 
-from .views import CarouselImageListView, CarouselImageCreateView, CarouselImageUpdateView, CarouselImageDeleteView
-
+from .views import (
+    CarouselImageListView, CarouselImageCreateView, 
+    CarouselImageUpdateView, CarouselImageDeleteView
+)
 urlpatterns = [
     path('', views.homeView, name = 'home_page'),
     path("about/", views.aboutView, name = 'about_page'),

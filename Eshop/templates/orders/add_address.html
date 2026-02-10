@@ -5,11 +5,15 @@
 {% endblock %}
 
 {% block content %}
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-success">Add Address</button>
-</form>
+<section class="d-flex justify-content-center">
+    <div class="add_address_container">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-success">Add Address</button>
+        </form>
+    </div>
+</section>
 
 
 {% endblock %}

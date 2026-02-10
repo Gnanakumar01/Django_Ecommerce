@@ -5,7 +5,8 @@ Add Product
 {% endblock %}
 
 {% block content %}
-<section class="d-flex row m-5 justify-contant-around">
+<section class="d-flex row m-5 justify-contant-around product-card" id="products-container" data-product-id="{{product.id}}" 
+data-add-url="{% url 'add_to_cart' %}">
 
     <div class="col">
         <div id="carouselExampleRide" class="carousel slide position-relative" data-bs-ride="true" >
@@ -13,10 +14,12 @@ Add Product
 
                 {% for image in product.images.all %}
                 <div class="position-relative carousel-item {% if forloop.first %}active{% endif %}">
-
+                    
+                    {% if user.is_staff %}
                     <a href="{% url 'edit_prod_image' image.pk %}" class="btn btn-success sticky-top" style="top: 37px;"><i class="bi bi-pencil-square"></i></a>
 
                     <a href="{% url 'del_prod_image' image.pk %}" class="btn btn-danger sticky-top" style="top: 37px; left: 530px;"><i class="bi bi-trash3-fill"></i></a>
+                    {% endif %}
 
                     <img id="product_carousel" src="{{ image.img.url }}" class="d-block w-100" alt="{{ product.title}}">
 
@@ -49,16 +52,22 @@ Add Product
             {{product.desc}}
         </p>
         <p>
-            ${{product.price}}
+            &#8377;{{product.price}}
         </p>
         <div class="d-flex  gap-3">
-            <a href="" class="btn btn-outline-success add-to-cart">Add to Cart</a>
+            {% if not user.is_staff%}
+            <button class="btn btn-outline-success add-to-cart">Add to Cart</button>
+            {% endif %}
+
+            {% if user.is_staff %}
             <a href="{% url 'edit_product' product.pk %}" class="btn btn-warning">Edit</a>
             <a href="{% url 'delete_product' product.pk %}" class="btn btn-danger">Delete</a>
+            {% endif %}
         </div>
     </div>
 </section>
 
+{% if user.is_staff %}
 <section class="upload_carousel_section">
     <form class="upload_product_carousel" method="post" enctype="multipart/form-data">
         <h4>Upload Product Carousel</h4>
@@ -67,4 +76,6 @@ Add Product
         <button type="submit" class="btn btn-success">Upload</button>
     </form>
 </section>
+{% endif %}
+
 {% endblock %}

@@ -1,6 +1,6 @@
-<div class="cart-item card shadow-sm w-70" data-product-id="{{ item.product.id }}">
+<div class="cart-item" data-product-id="{{ item.product.id }}">
 
-    <div class="row g-0 align-items-center w-70">
+    <div class="row g-5 align-items-center w-70">
 
         <!-- Image -->
         <div class="col-md-3 text-center cart-thumb">
@@ -12,7 +12,7 @@
             <div class="card-body">
 
                 <h5 class="cart-product-title">
-                    <a href="{% url 'product_details' item.product.pk %}" class="no-decoration">
+                    <a href="{% url 'product_details' item.product.pk %}" style="color: black; text-decoration: none;" class="no-decoration">
                         {{ item.product.title }}
                     </a>
                 </h5>
@@ -21,7 +21,7 @@
                     {{ item.product.desc|truncatewords:15 }}
                 </p>
 
-                <p class="cart-price">
+                <p class="cart-price" style="font-weight: bold; color: green;">
                     ₹{{ item.product.price }}
                 </p>
 
@@ -41,13 +41,13 @@
                         Remove
                     </button>
 
-                </div>
+                </div><hr style="width: 100%;">
 
             </div>
         </div>
 
         <!-- Subtotal -->
-        <div class="col-md-3 text-end cart-subtotal subtotal">
+        <div style="color: green; font-weight: bold; padding-left: 0px;" class="col-md-3 text-end cart-subtotal subtotal">
             ₹{{ item.subtotal }}
         </div>
 

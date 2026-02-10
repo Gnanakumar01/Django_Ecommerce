@@ -5,7 +5,123 @@ Contact
 {% endblock %}
 
 {% block content %}
-Hi This is Contact Page
-<br>
-Current Page: {{ current_page }}
+<section style="background-color: white;">
+  <body class="contactPage">
+
+  <section class="contactHero">
+    <h1 class="contactHeroHeading">Contact YourShop</h1>
+    <p class="contactHeroDescription">
+      Have questions about products, orders, or support? Our team is ready to help you anytime.
+    </p>
+  </section>
+
+  <section class="contactContainer">
+
+    <!-- Contact Details -->
+    <div class="contactInfoBox">
+      <h2 class="contactInfoHeading">Get in Touch</h2>
+
+      <div class="contactRow">
+        <strong class="contactLabel">Address</strong>
+        <span class="contactValue">Bangalore, India</span>
+      </div>
+
+      <div class="contactRow">
+        <strong class="contactLabel">Email</strong>
+        <span class="contactValue">gnana@gmail.com</span>
+      </div>
+
+      <div class="contactRow">
+        <strong class="contactLabel">Phone</strong>
+        <span class="contactValue">+91 98765 43210</span>
+      </div>
+
+      <div class="contactMapWrapper">
+        <iframe src="https://maps.google.com/maps?q=Bangalore&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe>
+      </div>
+    </div>
+
+    <!-- Message Form -->
+    <div class="contactFormBox">
+      <h2 class="contactFormHeading">Send Message</h2>
+
+      <form class="contactFormElement">
+        <div class="contactField">
+          <input type="text" class="contactInputField" placeholder="Your Name" required>
+        </div>
+
+        <div class="contactField">
+          <input type="email" class="contactInputField" placeholder="Email Address" required>
+        </div>
+
+        <div class="contactField">
+          <textarea class="contactTextareaField" placeholder="Write your message..."></textarea>
+        </div>
+
+        <button class="contactSubmitButton">Send Message</button>
+      </form>
+    </div>
+
+  </section>
+
+  <footer class="contactFooter">
+    © 2026 YourShop. All rights reserved.
+  </footer>
+
+</body>
+
+</section>
+
+<section>
+      <footer>
+        <!-- footer.html -->
+<footer class="footer">
+  <div class="footer-container">
+
+    <!-- Brand Info -->
+    <div>
+      <h3>YourShop</h3>
+      <p>
+        Premium quality products with fast delivery and secure payment.
+        Shop smart, live better with YourShop.
+      </p>
+
+      <div class="social-icons">
+        <a href="#">F</a>
+        <a href="#">I</a>
+        <a href="#">T</a>
+        <a href="#">Y</a>
+      </div>
+    </div>
+
+    <!-- Quick Links -->
+    <div>
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Shop</a></li>
+        <li><a href="#">Cart</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+
+    <!-- Customer Service -->
+    <div>
+      <h3>Customer Service</h3>
+      <ul>
+        <li><a href="#">My Account</a></li>
+        <li><a href="#">Order Tracking</a></li>
+        <li><a href="#">Wishlist</a></li>
+        <li><a href="#">Support</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    © 2026 <span>YourShop</span>. All rights reserved.
+  </div>
+</footer>
+        
+</section>
 {% endblock %}

@@ -7,13 +7,64 @@ Home
 {% block content %}
 
 <section>
-{% include 'mainapp/includes/carousel.html' %}
+    {% include 'mainapp/includes/carousel.html' %}
 </section>
 
 <section>
-{% include 'products/includes/productsSection.html' %}
+    {% include 'products/includes/productsSection.html' %}
 </section>
 
+<section>
+    <footer style="padding: 0px;">
+        <!-- footer.html -->
+        <footer class="footer">
+            <div class="footer-container">
+
+                <!-- Brand Info -->
+                <div>
+                    <h3>YourShop</h3>
+                    <p>
+                        Premium quality products with fast delivery and secure payment.
+                        Shop smart, live better with YourShop.
+                    </p>
+
+                    <div class="social-icons">
+                        <a href="#">F</a>
+                        <a href="#">I</a>
+                        <a href="#">T</a>
+                        <a href="#">Y</a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Shop</a></li>
+                        <li><a href="#">Cart</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Customer Service -->
+                <div>
+                    <h3>Customer Service</h3>
+                    <ul>
+                        <li><a href="#">My Account</a></li>
+                        <li><a href="#">Order Tracking</a></li>
+                        <li><a href="#">Wishlist</a></li>
+                        <li><a href="#">Support</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+                © 2026 <span>YourShop</span>. All rights reserved.
+            </div>
+        </footer>
+
+</section>
 
 {% endblock %}
-

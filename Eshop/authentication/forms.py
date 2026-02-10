@@ -12,8 +12,8 @@ BOOTSTRAP_ATTRS ={
 class UserRegisterForm(UserCreationForm):
     username = forms.CharField(widget=forms.TextInput(attrs=BOOTSTRAP_ATTRS))
     email = forms.EmailField(widget=forms.EmailInput(attrs=BOOTSTRAP_ATTRS))
-    password1 = forms.CharField(widget=forms.PasswordInput(attrs=BOOTSTRAP_ATTRS))
-    password2 = forms.CharField(widget=forms.PasswordInput(attrs=BOOTSTRAP_ATTRS))
+    password1 = forms.CharField(label="Password",widget=forms.PasswordInput(attrs=BOOTSTRAP_ATTRS))
+    password2 = forms.CharField(label="Confirm Password", widget=forms.PasswordInput(attrs=BOOTSTRAP_ATTRS))
 
     class Meta:
         model = User
