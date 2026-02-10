@@ -378,15 +378,6 @@ body {
 }
 
 /* Image styling */
-.product-img {
-    height: 220px;
-    object-fit: cover;
-    filter: blur(2px);
-    transition: all 0.4s ease;
-    background-color: #ffffff;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-    border-radius: 14px;
-}
 
 
 #add_to_cart_btn {
@@ -421,7 +412,7 @@ body {
 
 #product_image {
     height: 200px;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 .img_and_title {
