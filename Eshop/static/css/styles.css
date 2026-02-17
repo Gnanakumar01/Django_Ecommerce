@@ -368,7 +368,7 @@ body {
 }
 
 /* Card design */
-.products_card {
+#products_card {
     border: none;
     border-radius: 15px;
     overflow: hidden;
@@ -393,13 +393,9 @@ body {
 
 /* Hover animation */
 #products_card:hover {
+    transition-duration: 700ms;
     transform: translateY(-8px) scale(1.02);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-}
-
-/* Image zoom on hover */
-#products-card:hover .product_image {
-    transform: scale(1.08);
 }
 
 /* Placeholder image */
@@ -413,6 +409,9 @@ body {
 #product_image {
     height: 200px;
     object-fit: contain;
+&:hover{
+    transform: scale(1.0);
+}
 }
 
 .img_and_title {
